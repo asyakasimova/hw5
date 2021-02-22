@@ -28,8 +28,6 @@ compileTestJava {
 
 dependencies {
     implementation 'com.codeborne:selenide:5.18.0'
-    testImplementation 'com.codeborne:selenide:5.18.0'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.29'
     implementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     implementation 'io.qameta.allure:allure-java-commons:2.13.8'

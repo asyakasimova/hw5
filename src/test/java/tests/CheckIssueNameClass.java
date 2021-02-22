@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -32,12 +33,10 @@ public class CheckIssueNameClass {
     void checkIssueName(){
         SelenideLogger.addListener("allure", new AllureSelenide());
         open(BASE_URL);
-        $(".header-search-input").click();
-        $(".header-search-input").sendKeys(REPOSITORY);
-        $(".header-search-input").submit();
+        $(".header-search-input").setValue(REPOSITORY).submit();
         $(By.linkText(REPOSITORY)).click();
         $(withText(ISSUES)).click();
-        $(withText(ISSUE_NUMBER)).should(Condition.exist);
+        $(withText(ISSUE_NUMBER)).should(exist);
     }
 
     @Test
@@ -57,9 +56,7 @@ public class CheckIssueNameClass {
             open(BASE_URL);
         });
         step("Ищем репозиторий " + REPOSITORY, () -> {
-            $(".header-search-input").click();
-            $(".header-search-input").sendKeys(REPOSITORY);
-            $(".header-search-input").submit();
+            $(".header-search-input").setValue(REPOSITORY).submit();
         });
 
         step("Кликаем на репозиторий "+ REPOSITORY, () -> {
@@ -71,7 +68,7 @@ public class CheckIssueNameClass {
         });
 
         step("Проверяем, что в разделе есть ISSUE " + ISSUE_NUMBER, () -> {
-            $(withText(ISSUE_NUMBER)).should(Condition.exist);
+            $(withText(ISSUE_NUMBER)).should(visible);
         });
     }
 
